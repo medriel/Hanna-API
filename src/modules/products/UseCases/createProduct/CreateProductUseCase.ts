@@ -1,7 +1,7 @@
 import { Product } from "@prisma/client";
-import { AppError } from "../../../errors/AppError";
-import { prisma } from "../../../prisma/client";
-import { CreateProductDTO } from "../dtos/CreateProductDTO";
+import { AppError } from "../../../../errors/AppError";
+import { prisma } from "../../../../prisma/client";
+import { CreateProductDTO } from "../../dtos/CreateProductDTO";
 
 export class CreateProductUseCase {
   async execute({
