@@ -12,10 +12,13 @@ datasource db {
 
 model User {
   id         String   @id @default(uuid())
-  email      String   @unique
   name       String
+  email      String   @unique
+  password   String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  company    Company  @relation(fields: [company_id], references: [cnpj])
+  company_id Int
 
   @@map("users")
 }
@@ -24,25 +27,32 @@ model Company {
   cnpj Int    @id @unique
   name String
 
+  users    User[]
+  products Product[]
+
   @@map("companies")
 }
 
-model Location {
-  id           String @id @default(uuid())
-  type         String
-  reference    String
-  localization String
-
-  @@map("locations")
-}
-
 model Product {
-  code                String @id @unique
+  code                String    @id @unique
   name                String
   quantity            Int
   unit_of_measurement String
   reference           String
-  localization        String
+  Location            Location? @relation(fields: [location_id], references: [localization])
+  location_id         String
+  Company             Company   @relation(fields: [company_id], references: [cnpj])
+  company_id          Int
 
   @@map("products")
+}
+
+model Location {
+  localization String @id
+  type         String
+  reference    String
+
+  products Product[]
+
+  @@map("locations")
 }
