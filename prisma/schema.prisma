@@ -35,3 +35,12 @@ model Location {
 
   @@map("locations")
 }
+
+model Product {
+  code                String @id @unique
+  name                String
+  quantity            Int
+  unit_of_measurement String
+  reference           String
+  localization        String
+}
