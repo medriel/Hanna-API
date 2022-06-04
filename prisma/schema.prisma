@@ -26,3 +26,12 @@ model Company {
 
   @@map("companies")
 }
+
+model Location {
+  id           String @id @default(uuid())
+  type         String
+  reference    String
+  localization String
+
+  @@map("locations")
+}
