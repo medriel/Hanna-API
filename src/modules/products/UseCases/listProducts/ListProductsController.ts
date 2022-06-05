@@ -6,7 +6,7 @@ export class ListProductsController {
 
     const listProductsUseCase = new ListProductsUseCase();
 
-    const result = listProductsUseCase.execute();
+    const result = await listProductsUseCase.execute();
 
     return res.status(200).json(result);
   }

@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { prisma } from "../../../../prisma/client";
 import { CreateProductUseCase } from "./CreateProductUseCase";
 
 export class CreateProductController {
@@ -7,10 +6,8 @@ export class CreateProductController {
     const {
       code,
       name,
-      quantity,
       unit_of_measurement,
-      reference,
-      location_id,
+      quantity,
       company_id,
     } = req.body;
 
@@ -19,10 +16,8 @@ export class CreateProductController {
     const result = await createProductUseCase.execute({
       code,
       name,
-      quantity,
       unit_of_measurement,
-      reference,
-      location_id,
+      quantity,
       company_id,
     });
 

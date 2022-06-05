@@ -7,14 +7,12 @@ export class CreateProductUseCase {
   async execute({
     code,
     name,
-    quantity,
     unit_of_measurement,
-    reference,
-    location_id,
+    quantity,
     company_id
   }: CreateProductDTO): Promise<Product> {
 
-    const productAlreadyExists = await prisma.product.findUnique({
+    const productAlreadyExists = await prisma.product.findFirst({
       where: {
         code
       }
@@ -28,10 +26,8 @@ export class CreateProductUseCase {
       data: {
         code,
         name,
-        quantity,
         unit_of_measurement,
-        reference,
-        location_id,
+        quantity,
         company_id
       }
     });
