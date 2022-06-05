@@ -13,46 +13,59 @@ datasource db {
 model User {
   id         String   @id @default(uuid())
   name       String
+  user_name  String   @unique
   email      String   @unique
   password   String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  company    Company  @relation(fields: [company_id], references: [cnpj])
-  company_id Int
+  company    Company  @relation(fields: [company_id], references: [id])
+  company_id String //fk
 
-  @@map("users")
+  @@map("user")
 }
 
 model Company {
-  cnpj Int    @id @unique
+  id   String @id @default(uuid())
+  cnpj String @unique
   name String
 
   users    User[]
   products Product[]
 
-  @@map("companies")
+  @@map("company")
 }
 
 model Product {
-  code                String    @id @unique
+  id                  String  @id @default(uuid())
+  code                String
   name                String
-  quantity            Int
   unit_of_measurement String
-  reference           String
-  Location            Location? @relation(fields: [location_id], references: [localization])
-  location_id         String
-  Company             Company   @relation(fields: [company_id], references: [cnpj])
-  company_id          Int
+  quantity            Int
+  Company             Company @relation(fields: [company_id], references: [id])
+  company_id          String
 
-  @@map("products")
+  ProductLocation ProductLocation[]
+
+  @@map("product")
 }
 
 model Location {
-  localization String @id
+  id           String @id @default(uuid())
+  localization String
   type         String
   reference    String
 
-  products Product[]
+  ProductLocation ProductLocation[]
 
-  @@map("locations")
+  @@map("location")
+}
+
+model ProductLocation {
+  product     Product  @relation(fields: [product_id], references: [id])
+  product_id  String
+  location    Location @relation(fields: [location_id], references: [id])
+  location_id String
+
+  @@id([product_id, location_id])
+  @@map("product_location")
 }
