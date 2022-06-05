@@ -17,7 +17,7 @@ export class CreateCompanyUseCase {
       throw new AppError("Company already exists!");
     }
 
-    const cnpjIsValid = cnpjValidator.isValid(String(cnpj));
+    const cnpjIsValid = cnpjValidator.isValid(cnpj);
 
     if (!cnpjIsValid) {
       throw new AppError("CNPJ is invalid!");

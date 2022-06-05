@@ -1,4 +1,4 @@
 export interface CreateCompanyDTO {
-  cnpj: number;
+  cnpj: string;
   name: string;
 }
