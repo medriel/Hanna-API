@@ -1,6 +1,7 @@
 export interface CreateUserDTO {
-  email: string;
   name: string;
+  user_name: string;
+  email: string;
   password: string;
-  company_id: number;
+  company_id: string;
 }
