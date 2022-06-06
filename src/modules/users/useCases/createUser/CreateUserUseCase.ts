@@ -1,10 +1,13 @@
 import { User } from "@prisma/client";
+import { hash } from "bcrypt";
 import { AppError } from "../../../../errors/AppError";
 import { prisma } from "../../../../prisma/client";
 import { CreateUserDTO } from "../../dtos/CreateUserDTO";
 
 export class CreateUserUseCase {
   async execute({ name, user_name, email, password, company_id }: CreateUserDTO): Promise<User> {
+    const passwordHash = await hash(password, 8);
+
     // Verificar se o email já existe
     const emailAlreadyExists = await prisma.user.findUnique({
       where: {
@@ -30,7 +33,7 @@ export class CreateUserUseCase {
         name,
         user_name,
         email,
-        password,
+        password: passwordHash,
         company_id
       }
     });
