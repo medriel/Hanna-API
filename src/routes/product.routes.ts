@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 import { CreateProductController } from "../modules/products/UseCases/createProduct/CreateProductController";
 import { CreateProductLocationController } from "../modules/products/UseCases/createProductLocation/CreateProductLocationController";
 import { DeleteProductController } from "../modules/products/UseCases/deleteProduct/DeleteProductController";
@@ -14,6 +15,8 @@ const createProductLocationController = new CreateProductLocationController();
 const updateProductController = new UpdateProductController();
 const updateProductLocationController = new UpdateProductLocationController();
 const deleteProductController = new DeleteProductController();
+
+productRoutes.use(ensureAuthenticated);
 
 productRoutes.post("/", createProductController.handle);
 
