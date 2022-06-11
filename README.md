@@ -6,3 +6,4 @@
     - Express
     - Express-async-errors
     - Prisma
+    - Json Web Token
