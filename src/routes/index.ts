@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { authenticateRoutes } from "./authenticate.routes";
 import { companiesRoutes } from "./company.routes";
 import { locationRouter } from "./location.routes";
 import { productRoutes } from "./product.routes";
@@ -13,5 +14,7 @@ routes.use("/companies", companiesRoutes);
 routes.use("/products", productRoutes);
 
 routes.use("/locations", locationRouter);
+
+routes.use(authenticateRoutes);
 
 export { routes };
