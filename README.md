@@ -6,4 +6,5 @@
     - Express
     - Express-async-errors
     - Prisma
+    - Bcrypt
     - Json Web Token
