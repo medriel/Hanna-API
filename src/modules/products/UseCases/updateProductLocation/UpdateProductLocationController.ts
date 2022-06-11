@@ -6,11 +6,6 @@ export class UpdateProductLocationController {
 
     const { product_id, location_id } = req.params;
     const { new_product_id, new_location_id } = req.body;
-    console.log(req.params)
-    console.log(product_id)
-    console.log(location_id)
-    console.log(new_product_id)
-    console.log(new_location_id)
 
     const updateProductLocationUseCase = new UpdateProductLocationUseCase();
 

@@ -4,8 +4,6 @@ import { UpdateProductDTO } from "../../dtos/UpdateProductDTO";
 
 export class UpdateProductUseCase {
   async execute({ id, quantity }: UpdateProductDTO) {
-    console.log(id)
-    console.log(quantity)
 
     const productExists = await prisma.product.findUnique({
       where: {
