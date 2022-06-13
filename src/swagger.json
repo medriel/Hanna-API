@@ -1,0 +1,11 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Hanna Documentation",
+    "description": "This is an API Hanna",
+    "version": "1.0.0",
+    "contact": {
+      "email": "adriel.souza397@gmail.com"
+    }
+  }
+}

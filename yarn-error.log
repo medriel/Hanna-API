@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js add @types
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add @types/express-async-errors -D
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/home/adriel/Android/Sdk//emulator:/home/adriel/Android/Sdk//tools:/home/adriel/Android/Sdk//tools/bin:/home/adriel/Android/Sdk//platform-tools:/home/adriel/Android/Sdk//emulator:/home/adriel/Android/Sdk//tools:/home/adriel/Android/Sdk//tools/bin:/home/adriel/Android/Sdk//platform-tools
@@ -14,8 +14,8 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types: Request "https://registry.yarnpkg.com/@types" returned a 405
-      at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66154:18)
+  Error: https://registry.yarnpkg.com/@types%2fexpress-async-errors: Not found
+      at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66145:18)
       at Request.self.callback (/usr/share/yarn/lib/cli.js:140890:22)
       at Request.emit (events.js:400:28)
       at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141862:10)
@@ -40,6 +40,8 @@ npm manifest:
     "devDependencies": {
       "@types/bcrypt": "^5.0.0",
       "@types/express": "^4.17.13",
+      "@types/jsonwebtoken": "^8.5.8",
+      "@types/swagger-ui-express": "^4.1.3",
       "prisma": "^3.14.0",
       "ts-node-dev": "^2.0.0",
       "typescript": "^4.7.2"
@@ -50,7 +52,8 @@ npm manifest:
       "cpf-cnpj-validator": "^1.0.3",
       "express": "^4.18.1",
       "express-async-errors": "^3.1.1",
-      "jsonwebtoken": "^8.5.1"
+      "jsonwebtoken": "^8.5.1",
+      "swagger-ui-express": "^4.4.0"
     }
   }
 
@@ -210,7 +213,7 @@ Lockfile:
       "@types/qs" "*"
       "@types/range-parser" "*"
   
-  "@types/express@^4.17.13":
+  "@types/express@*", "@types/express@^4.17.13":
     version "4.17.13"
     resolved "https://registry.yarnpkg.com/@types/express/-/express-4.17.13.tgz#a76e2995728999bab51a33fabce1d705a3709034"
     integrity sha512-6bSZTPaTIACxn48l50SR+axgrqm6qXFIxrdAKaG6PaJk3+zuUr35hBlgT7vOmJcum+OEaIBLtHV/qloEAFITeA==
@@ -219,6 +222,13 @@ Lockfile:
       "@types/express-serve-static-core" "^4.17.18"
       "@types/qs" "*"
       "@types/serve-static" "*"
+  
+  "@types/jsonwebtoken@^8.5.8":
+    version "8.5.8"
+    resolved "https://registry.yarnpkg.com/@types/jsonwebtoken/-/jsonwebtoken-8.5.8.tgz#01b39711eb844777b7af1d1f2b4cf22fda1c0c44"
+    integrity sha512-zm6xBQpFDIDM6o9r6HSgDeIcLy82TKWctCXEPbJJcXb5AKmi5BNNdLXneixK4lplX3PqIVcwLBCGE/kAGnlD4A==
+    dependencies:
+      "@types/node" "*"
   
   "@types/mime@^1":
     version "1.3.2"
@@ -257,6 +267,14 @@ Lockfile:
     version "0.0.30"
     resolved "https://registry.yarnpkg.com/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
     integrity sha512-7NQmHra/JILCd1QqpSzl8+mJRc8ZHz3uDm8YV1Ks9IhK0epEiTw8aIErbvH9PI+6XbqhyIQy3462nEsn7UVzjQ==
+  
+  "@types/swagger-ui-express@^4.1.3":
+    version "4.1.3"
+    resolved "https://registry.yarnpkg.com/@types/swagger-ui-express/-/swagger-ui-express-4.1.3.tgz#7adbbbf5343b45869debef1e9ff39c9ba73e380f"
+    integrity sha512-jqCjGU/tGEaqIplPy3WyQg+Nrp6y80DCFnDEAvVKWkJyv0VivSSDCChkppHRHAablvInZe6pijDFMnavtN0vqA==
+    dependencies:
+      "@types/express" "*"
+      "@types/serve-static" "*"
   
   abbrev@1:
     version "1.1.1"
@@ -1244,6 +1262,18 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
     integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+  
+  swagger-ui-dist@>=4.11.0:
+    version "4.12.0"
+    resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-4.12.0.tgz#986d90f05e81fb9db3ca40372278a5d8ce71db3a"
+    integrity sha512-B0Iy2ueXtbByE6OOyHTi3lFQkpPi/L7kFOKFeKTr44za7dJIELa9kzaca6GkndCgpK1QTjArnoXG+aUy0XQp1w==
+  
+  swagger-ui-express@^4.4.0:
+    version "4.4.0"
+    resolved "https://registry.yarnpkg.com/swagger-ui-express/-/swagger-ui-express-4.4.0.tgz#4c50c51a092075588f173b2c3a5c830f07b6b44e"
+    integrity sha512-1CzRkHG386VQMVZK406jcpgnW2a9A5A/NiAjKhsFTQqUBWRF+uGbXTU/mA7WSV3mTzyOQDvjBdWP/c2qd5lqKw==
+    dependencies:
+      swagger-ui-dist ">=4.11.0"
   
   tar@^6.1.11:
     version "6.1.11"
