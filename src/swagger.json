@@ -109,6 +109,87 @@
           }
         }
       }
+    },
+    "/companies": {
+      "post": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Create a company",
+        "description": "Create a new company",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cnpj": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "cnpj": "46523507000120",
+                  "name": "company name sample"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Company already exists!"
+          },
+          "401": {
+            "description": "CNPJ is invalid!"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "List all companies",
+        "description": "List all companies",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
