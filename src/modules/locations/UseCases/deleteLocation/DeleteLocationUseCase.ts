@@ -21,7 +21,7 @@ export class DeleteLocationUseCase {
     });
 
     if (locationContainProduct.length > 0) {
-      throw new AppError("Location contains product!");
+      throw new AppError("Location contains product!", 401);
     }
 
     await prisma.location.delete({
