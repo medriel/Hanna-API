@@ -24,7 +24,7 @@ export class CreateProductLocationUseCase {
     });
 
     if (!locationExists) {
-      throw new AppError("Location does not exists!");
+      throw new AppError("Location does not exists!", 401);
     }
 
     await prisma.productLocation.create({

@@ -176,6 +176,9 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "id": {
+                        "type": "string"
+                      },
                       "name": {
                         "type": "string"
                       },
@@ -187,6 +190,252 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/products": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Create product",
+        "description": "Create new product",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "unit_of_measurement": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "integer"
+                  },
+                  "company_id": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "code": "465-25",
+                  "name": "product name sample",
+                  "unit_of_measurement": "UN",
+                  "quantity": 10,
+                  "company_id": "828d034b-1ae4-41f4-894a-003da3f43fa5"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Product already exists!"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "List all products",
+        "description": "List all products",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "code": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "unit_of_measurement": {
+                        "type": "string"
+                      },
+                      "quantity": {
+                        "type": "integer"
+                      },
+                      "company_id": {
+                        "type": "string"
+                      },
+                      "ProductLocation": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "location": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                },
+                                "localization": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "reference": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/location": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Create product location",
+        "description": "Create new product location",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "product_id": {
+                    "type": "string"
+                  },
+                  "location_id": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "product_id": "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx",
+                  "location_id": "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Product does not exists!"
+          },
+          "401": {
+            "description": "Location does not exists!"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "patch": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Update product",
+        "description": "Update product",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Product does not exists!"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Delete product",
+        "description": "Delete product",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Product does not exists!"
+          },
+          "401": {
+            "description": "Product still in stock"
+          },
+          "402": {
+            "description": "Product allocated in stock"
+          }
+        }
+      }
+    },
+    "/products/{product_id}/{location_id}": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Update product location",
+        "description": "Update product location",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Product does not exists!"
+          },
+          "401": {
+            "description": "Location does not exists!"
           }
         }
       }

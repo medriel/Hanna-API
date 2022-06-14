@@ -19,7 +19,7 @@ export class UpdateProductLocationUseCase {
     }
 
     if (!locationExists) {
-      throw new AppError("Location does not exists!");
+      throw new AppError("Location does not exists!", 401);
     }
 
     const productLocationUpdated = await prisma.productLocation.update({
