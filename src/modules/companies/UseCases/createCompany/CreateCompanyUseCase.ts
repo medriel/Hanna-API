@@ -20,7 +20,7 @@ export class CreateCompanyUseCase {
     const cnpjIsValid = cnpjValidator.isValid(cnpj);
 
     if (!cnpjIsValid) {
-      throw new AppError("CNPJ is invalid!");
+      throw new AppError("CNPJ is invalid!", 401);
     }
 
     const company = await prisma.company.create({

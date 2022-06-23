@@ -15,7 +15,7 @@ export class DeleteProductUseCase {
     }
 
     if (productExists.quantity > 0) {
-      throw new AppError("Product still in stock");
+      throw new AppError("Product still in stock", 401);
     }
 
     const productIsAllocated = await prisma.productLocation.findMany({
@@ -25,7 +25,7 @@ export class DeleteProductUseCase {
     })
 
     if (productIsAllocated.length > 0) {
-      throw new AppError("Product allocated in stock")
+      throw new AppError("Product allocated in stock", 402)
     }
 
     await prisma.product.delete({
