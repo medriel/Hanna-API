@@ -1,4 +1,4 @@
-# hanna
+# Hanna-API
 
 ## Tecnologias utilizadas
     - Node
