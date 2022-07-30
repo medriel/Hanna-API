@@ -5,3 +5,8 @@ export interface CreateUserDTO {
   password: string;
   company_id: string;
 }
+
+export interface UserLoginDTO {
+  user_name: string;
+  password: string;
+}
