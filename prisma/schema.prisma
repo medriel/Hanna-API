@@ -37,7 +37,7 @@ model Company {
 
 model Product {
   id                  String  @id @default(uuid())
-  code                String
+  code                String  @unique
   name                String
   unit_of_measurement String
   quantity            Int
