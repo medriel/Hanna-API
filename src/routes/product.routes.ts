@@ -22,7 +22,7 @@ productRoutes.post("/", createProductController.handle);
 
 productRoutes.get("/", listProductsController.handle);
 
-productRoutes.post("/location", createProductLocationController.handle);
+productRoutes.post("/product-location", createProductLocationController.handle);
 
 productRoutes.patch("/:id", updateProductController.handle);
 
