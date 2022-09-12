@@ -12,7 +12,7 @@ export class CreateProductUseCase {
     company_id
   }: CreateProductDTO): Promise<Product> {
 
-    const productAlreadyExists = await prisma.product.findFirst({
+    const productAlreadyExists = await prisma.product.findUnique({
       where: {
         code
       }

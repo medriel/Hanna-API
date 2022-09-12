@@ -6,7 +6,7 @@ export class CreateProductLocationUseCase {
   async execute({ product_id, location_id }: CreateProductLocationDTO): Promise<void> {
 
     // verificar se o produto existe
-    const productExists = await prisma.product.findUnique({
+    const productExists = await prisma.product.findFirst({
       where: {
         id: product_id
       }
@@ -17,7 +17,7 @@ export class CreateProductLocationUseCase {
     }
 
     //verificar se a localização existe
-    const locationExists = await prisma.location.findUnique({
+    const locationExists = await prisma.location.findFirst({
       where: {
         id: location_id
       }
