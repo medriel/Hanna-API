@@ -1,12 +1,9 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -18,53 +15,50 @@ model User {
   password   String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  company_id String
   company    Company  @relation(fields: [company_id], references: [id])
-  company_id String //fk
 
   @@map("user")
 }
 
 model Company {
-  id   String @id @default(uuid())
-  cnpj String @unique
-  name String
-
-  users    User[]
+  id       String    @id @default(uuid())
+  cnpj     String    @unique
+  name     String
   products Product[]
+  users    User[]
 
   @@map("company")
 }
 
 model Product {
-  id                  String  @id @default(uuid())
-  code                String  @unique
+  id                  String            @id @default(uuid())
+  code                String            @unique
   name                String
   unit_of_measurement String
   quantity            Int
-  Company             Company @relation(fields: [company_id], references: [id])
   company_id          String
-
-  ProductLocation ProductLocation[]
+  Company             Company           @relation(fields: [company_id], references: [id])
+  ProductLocation     ProductLocation[]
 
   @@map("product")
 }
 
 model Location {
-  id           String @id @default(uuid())
-  localization String
-  type         String
-  reference    String
-
+  id              String            @id @default(uuid())
+  localization    String
+  type            String
+  reference       String
   ProductLocation ProductLocation[]
 
   @@map("location")
 }
 
 model ProductLocation {
-  product     Product  @relation(fields: [product_id], references: [id])
   product_id  String
-  location    Location @relation(fields: [location_id], references: [id])
   location_id String
+  location    Location @relation(fields: [location_id], references: [id])
+  product     Product  @relation(fields: [product_id], references: [id])
 
   @@id([product_id, location_id])
   @@map("product_location")
