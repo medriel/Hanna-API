@@ -7,9 +7,9 @@ import swaggerFile from "./swagger.json";
 
 const app = express();
 
-let cors = require('cors')
+let cors = require('cors');
 
-app.use(cors())
+app.use(cors());
 
 app.use(express.json());
 
