@@ -8,7 +8,7 @@ const companiesRoutes = Router();
 const createCompanyController = new CreateCompanyController();
 const listCompaniesController = new ListCompaniesController();
 
-companiesRoutes.use(ensureAuthenticated);
+// companiesRoutes.use(ensureAuthenticated);
 
 companiesRoutes.post("/", createCompanyController.handle);
 companiesRoutes.get("/", listCompaniesController.handle)
