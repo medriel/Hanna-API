@@ -4,10 +4,9 @@ import express, { NextFunction, Request, Response } from "express";
 import { routes } from "./routes";
 import { AppError } from "./errors/AppError";
 import swaggerFile from "./swagger.json";
+import cors from 'cors'
 
 const app = express();
-
-let cors = require('cors');
 
 app.use(cors());
 
@@ -31,4 +30,4 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
   })
 })
 
-app.listen(process.env.PORT || 3333, () => console.log("Server is running")); 
+app.listen(3333, () => console.log("Server is running")); //process.env.PORT || 
