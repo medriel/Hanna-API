@@ -5,12 +5,12 @@ export class CreateLocationController {
 
   async handle(req: Request, res: Response) {
 
-    const { localization, type, reference } = req.body;
+    const { floor, type, reference } = req.body;
 
     const createLocalizationUseCase = new CreateLocationUseCase();
 
     const result = await createLocalizationUseCase.execute({
-      localization,
+      floor,
       type,
       reference
     });

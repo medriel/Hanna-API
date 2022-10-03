@@ -1,5 +1,5 @@
 export interface CreateLocationDTO {
-  localization: string;
+  floor: string;
   type: string;
   reference: string;
 }

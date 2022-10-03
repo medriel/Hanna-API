@@ -4,12 +4,13 @@ import { prisma } from "../../../../prisma/client";
 import { CreateLocationDTO } from "../../dtos/CreateLocationDTO";
 
 export class CreateLocationUseCase {
-  async execute({ localization, type, reference }: CreateLocationDTO): Promise<Location> {
+  async execute({ floor, type, reference }: CreateLocationDTO): Promise<Location> {
+    //validar se o usuário é gestor
 
     // Verificar se a localização já existe
     const locationAlreadyExists = await prisma.location.findFirst({
       where: {
-        localization,
+        floor,
         type,
         reference
       }
@@ -19,7 +20,7 @@ export class CreateLocationUseCase {
     }
 
     const product = await prisma.location.create({
-      data: { localization, type, reference }
+      data: { floor, type, reference }
     })
 
     return product;
