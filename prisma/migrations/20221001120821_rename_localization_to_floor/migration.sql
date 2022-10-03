@@ -2,7 +2,6 @@
 CREATE TABLE "user" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "user_name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -17,6 +16,8 @@ CREATE TABLE "company" (
     "id" TEXT NOT NULL,
     "cnpj" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+    "state" TEXT NOT NULL,
 
     CONSTRAINT "company_pkey" PRIMARY KEY ("id")
 );
@@ -36,7 +37,7 @@ CREATE TABLE "product" (
 -- CreateTable
 CREATE TABLE "location" (
     "id" TEXT NOT NULL,
-    "localization" TEXT NOT NULL,
+    "floor" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "reference" TEXT NOT NULL,
 
@@ -50,9 +51,6 @@ CREATE TABLE "product_location" (
 
     CONSTRAINT "product_location_pkey" PRIMARY KEY ("product_id","location_id")
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "user_user_name_key" ON "user"("user_name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
