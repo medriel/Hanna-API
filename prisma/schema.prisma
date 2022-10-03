@@ -10,7 +10,6 @@ datasource db {
 model User {
   id         String   @id @default(uuid())
   name       String
-  user_name  String   @unique
   email      String   @unique
   password   String
   created_at DateTime @default(now())
@@ -25,6 +24,8 @@ model Company {
   id       String    @id @default(uuid())
   cnpj     String    @unique
   name     String
+  city     String
+  state    String
   products Product[]
   users    User[]
 
@@ -46,7 +47,7 @@ model Product {
 
 model Location {
   id              String            @id @default(uuid())
-  localization    String
+  floor           String
   type            String
   reference       String
   ProductLocation ProductLocation[]
