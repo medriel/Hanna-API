@@ -25,9 +25,6 @@
                   "name": {
                     "type": "string"
                   },
-                  "user_name": {
-                    "type": "string"
-                  },
                   "email": {
                     "type": "string"
                   },
@@ -40,7 +37,6 @@
                 },
                 "example": {
                   "name": "user teste",
-                  "user_name": "user_teste",
                   "email": "user_teste@email.com",
                   "password": "123123",
                   "company_id": "company teste"
@@ -78,9 +74,6 @@
                         "type": "string"
                       },
                       "name": {
-                        "type": "string"
-                      },
-                      "user_name": {
                         "type": "string"
                       },
                       "email": {
@@ -584,7 +577,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "user_name": {
+                  "email": {
                     "type": "string"
                   },
                   "password": {
@@ -592,7 +585,7 @@
                   }
                 },
                 "example": {
-                  "user_name": "user name sample",
+                  "email": "email@email.com",
                   "password": "123123"
                 }
               }
