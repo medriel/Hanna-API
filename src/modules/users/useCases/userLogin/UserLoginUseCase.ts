@@ -5,11 +5,11 @@ import { prisma } from "../../../../prisma/client";
 import { UserLoginDTO } from "../../dtos/CreateUserDTO";
 
 export class UserLoginUseCase {
-  async execute({ user_name, password }: UserLoginDTO): Promise<User> {
+  async execute({ email, password }: UserLoginDTO): Promise<User> {
 
     const user = await prisma.user.findUnique({
       where: {
-        user_name
+        email
       }
     });
 

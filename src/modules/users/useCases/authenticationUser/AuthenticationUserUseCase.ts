@@ -4,34 +4,34 @@ import { AppError } from "../../../../errors/AppError";
 import { prisma } from "../../../../prisma/client";
 
 interface IRequest {
-  user_name: string;
+  email: string;
   password: string;
 }
 
 interface IResponse {
   user: {
-    user_name: string,
+    name: string,
     email: string
   };
   token: string;
 }
 
 class AuthenticationUserUseCase {
-  async execute({ user_name, password }: IRequest): Promise<IResponse> {
+  async execute({ email, password }: IRequest): Promise<IResponse> {
     const user = await prisma.user.findUnique({
       where: {
-        user_name
+        email
       }
     });
 
     if (!user) {
-      throw new AppError("User or password incorrect!");
+      throw new AppError("E-mail or password incorrect!");
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new AppError("User or password incorrect!");
+      throw new AppError("E-mail or password incorrect!");
     }
 
     const token = sign({}, "725f1e824bc0641634f155834ba62f0f", {
@@ -42,7 +42,7 @@ class AuthenticationUserUseCase {
     const tokenReturn: IResponse = {
       token,
       user: {
-        user_name: user.user_name,
+        name: user.name,
         email: user.email
       }
     }
