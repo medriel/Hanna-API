@@ -5,7 +5,7 @@ import { prisma } from "../../../../prisma/client";
 import { CreateCompanyDTO } from "../../dtos/CreateCompanyDTO";
 
 export class CreateCompanyUseCase {
-  async execute({ cnpj, name }: CreateCompanyDTO): Promise<Company> {
+  async execute({ cnpj, name, city, state }: CreateCompanyDTO): Promise<Company> {
 
     const companyAlreadyExists = await prisma.company.findUnique({
       where: {
@@ -26,7 +26,9 @@ export class CreateCompanyUseCase {
     const company = await prisma.company.create({
       data: {
         cnpj,
-        name
+        name,
+        city,
+        state
       }
     });
 
