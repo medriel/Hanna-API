@@ -28,7 +28,7 @@ productRoutes.get("/", listProductsController.handle);
 
 productRoutes.get("/:code", listProductsByCodeController.handle)
 
-productRoutes.get("/:company_id", listProductsByCompanyIdController.handle);
+productRoutes.get("/company/:company_id", listProductsByCompanyIdController.handle);
 
 productRoutes.post("/product-location", createProductLocationController.handle);
 
