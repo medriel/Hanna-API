@@ -5,7 +5,7 @@ import { prisma } from "../../../../prisma/client";
 import { CreateUserDTO } from "../../dtos/CreateUserDTO";
 
 export class CreateUserUseCase {
-  async execute({ name, email, password, company_id }: CreateUserDTO): Promise<User> {
+  async execute({ name, email, password, type, company_id }: CreateUserDTO): Promise<User> {
     const passwordHash = await hash(password, 8);
 
     // Verificar se o email já existe
@@ -25,6 +25,7 @@ export class CreateUserUseCase {
         name,
         email,
         password: passwordHash,
+        type,
         company_id
       }
     });
